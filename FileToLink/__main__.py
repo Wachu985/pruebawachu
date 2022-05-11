@@ -35,14 +35,13 @@ async def main(_, msg: Message):
         # If the file already exist on the server
         if not worker.parts[0]:
             # If first part of the file is not downloaded yet, send Generating link message
-            gen_msg = await bot.send_message(msg.chat.id, Strings.generating_link,
-                                             reply_to_message_id=msg.message_id)
+            gen_msg = await bot.send_message(msg.chat.id, Strings.generating_link)
         else:
             gen_msg = None
     else:
         # Else if the file not exist on the server, Send the message to Archive Channel and Create empty file
-        gen_msg = await bot.send_message(msg.chat.id, Strings.generating_link,
-                                         reply_to_message_id=msg.message_id)
+        gen_msg = await bot.send_message(msg.chat.id, Strings.generating_link)
+        
 
         archived_msg = await archive_msg(msg)
         worker = Worker(archived_msg)
